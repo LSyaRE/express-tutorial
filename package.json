@@ -1,0 +1,27 @@
+{
+  "name": "tutorial",
+  "version": "1.0.0",
+  "description": "this is a express aplication",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node ./src/index.js",
+    "start:dev": "nodemon ./src/index.js",
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/LSyaRE/express-tutorial.git"
+  },
+  "author": "LSyaRE",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LSyaRE/express-tutorial/issues"
+  },
+  "homepage": "https://github.com/LSyaRE/express-tutorial#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}
