@@ -7,7 +7,7 @@ const PORT = 3001;
 
 app.use(express.json())
 app.use(express.urlencoded())
-app.use((req, res, next)=>{
+app.use((req, res, next) => {
   console.log(req.url);
   next();
 });
@@ -31,6 +31,17 @@ const groceries = [
 
 app.get("/groceries", (req, res) => {
   res.send(groceries);
+});
+
+app.get("/groceries/:item", (req, res) => {
+
+  const { item } = req.params;
+
+  const data = groceries.find((grocerie) => grocerie.item == item);
+
+  if (!data) throw "Grocerie not found"
+
+  res.send(data);
 });
 
 // app.get("/groceries", (req, res, next) => {
