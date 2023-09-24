@@ -1,6 +1,12 @@
 
+// import express from "express";
+// // const groceriesRoute = require("./routes/groceries");
+// import groceriesRoute  from "./routes/groceries";
 
 const express = require("express");
+const groceriesRoute = require("./routes/groceries");
+const marketsRoute = require("./routes/markets");
+
 
 const app = express();
 const PORT = 3001;
@@ -14,55 +20,8 @@ app.use((req, res, next) => {
 
 app.listen(PORT, () => console.info(`listening on ${PORT}`));
 
-const groceries = [
-  {
-    item: "milk",
-    quantity: 5,
-  },
-  {
-    item: "cereal",
-    quantity: 10,
-  },
-  {
-    item: "candy",
-    quantity: 100,
-  },
-];
 
-app.get("/groceries", (req, res) => {
-  res.send(groceries);
-});
 
-app.get("/groceries/:item", (req, res) => {
+app.use("/api/v1/groceries",groceriesRoute);
+app.use("/api/v1/markets",marketsRoute);
 
-  const { item } = req.params;
-
-  const data = groceries.find((grocerie) => grocerie.item == item);
-
-  if (!data) throw "Grocerie not found"
-
-  res.send(data);
-});
-
-// app.get("/groceries", (req, res, next) => {
-//   console.log("Before Handling Request");
-//   next();
-// },
-//   (req, res, next) => {
-//     res.send(groceries);
-//     next();
-//   },
-//   (req, res, next) => {
-//     console.log("Finished Executing GET Request");
-//     next();
-//   },
-//   () => {
-//     console.log("The end");
-//   },
-// );
-
-app.post('/groceries', (req, res) => {
-  console.log(req.body);
-  groceries.push(req.body);
-  res.send(201)
-});
